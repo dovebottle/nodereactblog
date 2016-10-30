@@ -1,0 +1,26 @@
+<%- include header %>
+
+<!-- 
+登录
+注册
+登出
+
+初试状态 登录+注册【登录+注册】
+登录后   登录态【登出】
+注册后   登录态【登出】
+登出后   初试抬【登录+注册】
+
+ -->
+
+<div id="flag"></div>
+
+<form method="post">
+  用户名：  <input type="text" name="name"/><br />
+  密码：    <input type="password" name="password"/><br />
+  确认密码：<input type="password" name="password-repeat"/><br />
+  邮箱：    <input type="email" name="email"/><br />
+            <input type="submit" value="注册"/>
+</form>
+
+</body>
+</html>

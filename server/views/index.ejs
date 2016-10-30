@@ -1,0 +1,30 @@
+<%- include header %>
+
+<div class="author">
+    <div class="author_pic"></div>
+    <div class="author_name">miaomiao</div>
+</div>
+<div class="article">
+    article dom
+</div>
+
+
+    <div class="total-container">
+        <div class="first-note">This is page1+1+bs.</div>
+        <br>
+        <div id="draw" class="image-example-page1"></div>
+    </div>
+
+    <div>
+        <span>react:</span>
+        <div id="react_demo"></div>
+    </div>
+    
+
+
+    <script src="/page1/bundle.js"></script>
+    <% if (env !== "production" && reload === true) { %>
+        <script src="/reload/reload.js"></script>
+    <% } %>
+</body>
+</html>
