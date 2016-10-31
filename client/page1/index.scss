@@ -29,14 +29,34 @@
 	li {
 		list-style: none;
 		text-align: center;
-		font-size: 22px;
+		font-size: 20px;
 		font-weight: 500;
 		padding: 10px 0;
 		margin: 0px 30px;
 		border-top: 1px solid #CACACA;
+		border-bottom: 1px solid transparent;
+		a {
+			color: #828282;
+			text-decoration: none; 
+		}
 	}
 	li:first-child {
 		border-top: 0px solid transparent;
+	}
+
+	li:hover {
+		border:solid 1px #7da2ce;
+		border-radius:3px;
+		box-shadow: inset 0 0 1px #fff;
+		background-color:#cfe3fd;
+		background: -moz-linear-gradient(top, #dcebfd, #c2dcfd);
+		background: -webkit-gradient(linear, center top, center bottom, from(#dcebfd), to(#c2dcfd));
+		cursor: pointer;
+		margin: 0px 10px;
+		font-size: 25px;
+		a {
+			color: #000000;
+		}
 	}
 }
 
@@ -58,5 +78,4 @@
 .image-example-page1 {
     width: 150px;
     height: 150px;
-    background: url(page_1_image.jpg) no-repeat;
 }

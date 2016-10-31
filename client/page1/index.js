@@ -11,7 +11,7 @@ common_fun();
 
 render(<Greeter />, document.getElementById('react_demo'));
 
-console.log("client/page1/index.js");
+console.log("client/page1/index.js01");
 // var drawEl = document.getElementById("draw");
 // drawEl.innerHTML = "peko";
 
