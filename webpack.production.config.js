@@ -6,7 +6,8 @@ var webpack = require('webpack');
 var productionConfig = [{
     entry: {
         page1: './client/page1',
-        page2: './client/page2'
+        page2: './client/page2',
+        addnote: './client/addnote/addnote.js'
     },
     output: {
         filename: './[name]/bundle.js',

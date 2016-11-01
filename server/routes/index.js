@@ -22,7 +22,8 @@ module.exports = function (app) {
     	});
     });
 
-//新建笔记[未检测登录态]
+//新建笔记
+	app.get('/addnote', checkLogin);
 	app.get('/addnote', function(req, res) {
 		res.render('addnote', {
 			user: req.session.user,
@@ -31,6 +32,7 @@ module.exports = function (app) {
 		});
 	});
 
+	app.post('/addnote', checkLogin);
 	app.post('/addnote', function(req, res) {
 		var time = new Date();
 
@@ -156,7 +158,6 @@ module.exports = function (app) {
 
 	//登出的时候判断是否登录
 	function checkLogin(req, res, next) {
-		console.log(req.session);
 		if (!req.session.user) {
 			req.flash('error'); 
 			req.flash('error', '未登录!'); 

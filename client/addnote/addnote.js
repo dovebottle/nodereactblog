@@ -1,3 +1,5 @@
+import styles from './addnote.scss';//scss导入
+
 let addnote = {
 	init: function() {
 		console.log('addnoteinit');
@@ -45,4 +47,5 @@ let addnote = {
 	}
 };
 
-export default addnote;
+addnote.init();
+// export default addnote;

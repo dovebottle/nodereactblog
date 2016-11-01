@@ -1,0 +1,36 @@
+
+<div class="author">
+	<div class="author_pic"></div>
+	<% if (user) { %>
+		<h3 class="author_name"><%- user.name %></h3>
+	<% } else { %>
+		<h3 class="author_name">nodejs</h3>
+	<% } %>
+	
+	<ul class="funlist">
+		<li><a href="/">我的首页</a></li>
+		<li><a href="">我的笔记</a></li>
+		<li><a href="/addnote">新建笔记</a></li>
+		<li><a href="">我的标签</a></li>
+
+		<% if (user) { %>
+			<li><a title="登出" href="/logout">登出</a></li>
+		<% } else { %>
+			<li><a title="登录" href="/login">登录</a></li>
+			<li><a title="注册" href="/reg">注册</a></li>
+		<% } %>
+	</ul>
+
+	<div>
+        <span>react:</span>
+        <div id="react_demo"></div>
+    </div>
+    <div>状态：</div>
+	<% if (success) { %>
+	    <div><%= success %></div>
+	<% } %>
+	<% if (error) { %>
+	    <div><%= error %> </div>
+	<% } %>
+
+</div>

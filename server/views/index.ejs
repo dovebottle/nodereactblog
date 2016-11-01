@@ -2,20 +2,8 @@
 
 <div class="container">
     
-    <div class="author">
-        <div class="author_pic"></div>
-        <h3 class="author_name">miaomiao</h3>
-        <ul class="funlist">
-            <li><a href="/">我的首页</a></li>
-            <li><a href="">我的笔记</a></li>
-            <li><a href="/addnote">新建笔记</a></li>
-            <li><a href="">我的标签</a></li>
-            <li><a href="">占位区</a></li>
-            <li><a href="">我的笔记</a></li>
-            <li><a href="">新建笔记</a></li>
-            <li><a href="">我的标签</a></li>
-        </ul>
-    </div>
+    <%- include funlist %>
+
     <div class="article_box">
         首页
     </div>
@@ -27,17 +15,6 @@
         <br>
         <div id="draw" class="image-example-page1"></div>
     </div> -->
-
-    <div>
-        <span>react:</span>
-        <div id="react_demo"></div>
-    </div>
     
 
-
-    <script src="/page1/bundle.js"></script>
-    <% if (env !== "production" && reload === true) { %>
-        <script src="/reload/reload.js"></script>
-    <% } %>
-</body>
-</html>
+<%- include footer %>
