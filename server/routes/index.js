@@ -22,6 +22,20 @@ module.exports = function (app) {
     	});
     });
 
+//显示笔记
+	app.get('/mynote', checkLogin);
+	app.get('/mynote', function(req, res) {
+		Note.get(req.session.user.name, function(err, note) {
+			// console.log(note);
+
+			res.render('mynote', {
+				user: req.session.user,
+	    		success: req.flash('success').toString(),
+	    		error: req.flash('error').toString()
+			});
+		});
+	});
+
 //新建笔记
 	app.get('/addnote', checkLogin);
 	app.get('/addnote', function(req, res) {

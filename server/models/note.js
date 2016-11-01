@@ -10,6 +10,31 @@ function Note(note) {
 
 module.exports = Note;
 
+Note.get = function(author, callback) {
+	mongodb.open(function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		db.collection('note', function(err, collection) {
+			if (err) {
+				mongodb.close();
+				return callback(err);
+			}
+			//通过作者名字查找文章
+			collection.find({
+				author: author
+			}).toArray(function(err, note) {
+				console.log(note);
+				mongodb.close();
+				if (err) {
+					return callback(err);
+				}
+				callback(null, note);
+			});
+		});
+	});
+};
+
 Note.prototype.save = function(callback) {
 	var note = {
 		author: this.author,
