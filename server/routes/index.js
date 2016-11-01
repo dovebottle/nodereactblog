@@ -1,4 +1,5 @@
 var User = require('../models/user.js');
+var Note = require('../models/note.js');
 
 module.exports = function (app) {
 
@@ -20,6 +21,39 @@ module.exports = function (app) {
     		error: req.flash('error').toString()
     	});
     });
+
+//新建笔记[未检测登录态]
+	app.get('/addnote', function(req, res) {
+		res.render('addnote', {
+			user: req.session.user,
+    		success: req.flash('success').toString(),
+    		error: req.flash('error').toString()
+		});
+	});
+
+	app.post('/addnote', function(req, res) {
+		var time = new Date();
+
+		if (!req.body.title) {
+			console.log('不能为空');
+		}
+
+		var newNote = new Note({
+			author : req.session.user.name,
+			title : req.body.title,
+			content : req.body.content,
+			tags : strToArr(req.body.tags, /[,，]/),
+			time : time
+		});
+
+		newNote.save(function(err, note) {
+			console.log(note);
+			if (err) {
+				console.log(err);
+			}
+			res.send(note);
+		});
+	});
 
 //注册
     app.get('/reg', checkNotLogin);
@@ -140,5 +174,16 @@ module.exports = function (app) {
 			return res.redirect('back');//返回之前的页面
 		}
 		next();
+	}
+
+	//分割字符串去除空值
+	function strToArr(str, rex) {
+		var getArr = str.split(rex);
+		getArr.map(function(value, index, arr) {
+			if (!value) {
+				arr.splice(index, 1);
+			}
+		});
+		return getArr;
 	}
 };

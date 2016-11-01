@@ -7,7 +7,12 @@ import { common_fun } from '../common/common.js';
 import Greeter from '../common/reactdemo.js';
 import styles from './index.scss';//scss导入
 
+import addnote from '../js/addnote.js';
+
 common_fun();
+
+//
+addnote.init();
 
 render(<Greeter />, document.getElementById('react_demo'));
 

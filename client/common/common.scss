@@ -5,6 +5,9 @@ body {
     padding: 0px;
     font-family: "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
+body, html {
+	height: 100%;
+}
 ul, li {
 	margin: 0;
 	padding: 0;
