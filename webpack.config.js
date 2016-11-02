@@ -10,7 +10,8 @@ var devConfig = {
         page1: ['./client/page1', hotMiddlewareScript],
         page2: ['./client/page2', hotMiddlewareScript],
         addnote: ['./client/addnote/addnote.js', hotMiddlewareScript],
-        mynote: ['./client/mynote/mynote.js', hotMiddlewareScript]
+        mynote: ['./client/mynote/mynote.js', hotMiddlewareScript],
+        mytags: ['./client/mytags/mytags.js', hotMiddlewareScript]
     },
     output: {
         filename: './[name]/bundle.js',

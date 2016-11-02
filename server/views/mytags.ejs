@@ -1,0 +1,27 @@
+<%- include header %>
+<% if (env === "production") { %>
+    <link rel="stylesheet" href="/mytags/index.css">
+<% } %>
+<div class="container">
+    
+    <%- include funlist %>
+    <div class="mytags_box" id="mytags_box">
+
+        <!-- 以下直出 -->
+        <!-- <div class="tags_box">
+            <% if(noempty) { %>
+                <% for (var tag in tagsobj) { %>
+                    <a href=""><%= tag %></a>
+                <% } %>
+            <% } else { %>
+                <p>你还没有设置任何标签</p>
+            <% } %>
+        </div>
+        <div class="note_box"></div> -->
+
+
+    </div>
+</div>
+
+<script src="/mytags/bundle.js"></script>
+<%- include footer %>

@@ -23,6 +23,44 @@ module.exports = function (app) {
     	});
     });
 
+//显示标签
+	app.get('/mytags', checkLogin);
+	app.get('/mytags', function(req, res) {
+		Note.gettags(req.session.user.name, function(err, tagsobj) {
+			//港真，在路由这里做这种事情不大好
+			// var noempty = false;
+			// for (var key in tagsobj) {
+				noempty = true;
+				// return;
+			// }
+			res.render('mytags', {
+				user: req.session.user,
+	    		success: req.flash('success').toString(),
+	    		error: req.flash('error').toString(),
+	    		tagsobj: tagsobj,
+	    		noempty: noempty
+			});
+		});
+	});
+
+	app.post('/mytags', checkLogin);
+	app.post('/mytags', function(req, res) {
+		Note.gettags(req.session.user.name, function(err, tagsobj) {
+
+			res.send(tagsobj);
+		});
+	});
+
+//通过标签和作者获取文章组
+	app.post('/tagToNote', checkLogin);
+	app.post('/tagToNote', function(req, res) {
+		var tag = req.body.tag;
+		Note.getNoteByTag(tag, req.session.user.name, function(err, notes) {
+
+			res.send(notes);
+		});
+	});
+
 //显示笔记
 	app.get('/mynote', checkLogin);
 	app.get('/mynote', function(req, res) {

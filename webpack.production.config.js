@@ -8,7 +8,8 @@ var productionConfig = [{
         page1: './client/page1',
         page2: './client/page2',
         addnote: './client/addnote/addnote.js',
-        mynote: './client/mynote/mynote.js'
+        mynote: './client/mynote/mynote.js',
+        mytags: './client/mytags/mytags.js'
 
     },
     output: {
