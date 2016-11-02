@@ -1,0 +1,14 @@
+<%- include header %>
+<% if (env === "production") { %>
+    <link rel="stylesheet" href="/addnote/index.css">
+<% } %>
+
+<% if (note.length > 0) { %>
+<h3><%= note[0].title %></h3>
+<% } else { %>
+<p>文章抓取出错惹。</p>
+<% } %>
+
+
+<script src="/singlenote/bundle.js"></script>
+<%- include footer %>

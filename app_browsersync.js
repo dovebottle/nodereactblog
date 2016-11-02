@@ -59,7 +59,7 @@ if (isDev) {
     }));
     app.use(webpackHotMiddleware(compiler));
 
-    require('./server/routes')(app);
+    require('./server/routes')(app, express);
 
     // browsersync is a nice choice when modifying only views (with their css & js)
     //views下面的模板文件修改时不需要重启node服务器（routes需要）
@@ -78,7 +78,7 @@ if (isDev) {
 
 } else {
     app.use(express.static(path.join(__dirname, 'public')));
-    require('./server/routes')(app);
+    require('./server/routes')(app, express);
     app.listen(port, function () {
         console.log('App (production) is now running on port 13300!');
     });

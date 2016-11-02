@@ -14,7 +14,7 @@ common_fun();
 //新增笔记
 // addnote.init();
 
-render(<Greeter />, document.getElementById('react_demo'));
+// render(<Greeter />, document.getElementById('react_demo'));
 
 console.log("client/page1/index.js01");
 // var drawEl = document.getElementById("draw");

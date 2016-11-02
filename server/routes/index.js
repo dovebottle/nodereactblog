@@ -1,10 +1,11 @@
 var User = require('../models/user.js');
 var Note = require('../models/note.js');
 
-module.exports = function (app) {
+module.exports = function (app, express) {
 
     // app.use('/', require('./page1'));
     // app.use('/page2', require('./page2'));
+    var router = express.Router();
 
     app.get('/', function(req, res) {
     	// console.log(req.session);
@@ -22,6 +23,23 @@ module.exports = function (app) {
     		error: req.flash('error').toString()
     	});
     });
+
+//文章页面
+	router.param(['author', 'noteid'], function(req, res, next, value) {
+		next();
+	});
+	app.get('/notes/:author/:noteid', function(req, res) {
+		console.log(req.params.author);
+		Note.getNoteByAuthorNoteid(req.params.author, req.params.noteid, function(err, note) {
+
+			res.render('singlenote', {
+	    		user: req.session.user,
+	    		success: req.flash('success').toString(),
+				error: req.flash('error').toString(),
+				note: note
+	    	});
+		});
+	});
 
 //显示标签
 	app.get('/mytags', checkLogin);

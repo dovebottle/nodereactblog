@@ -9,7 +9,8 @@ var productionConfig = [{
         page2: './client/page2',
         addnote: './client/addnote/addnote.js',
         mynote: './client/mynote/mynote.js',
-        mytags: './client/mytags/mytags.js'
+        mytags: './client/mytags/mytags.js',
+        singlenote: './client/singlenote/singlenote.js'
 
     },
     output: {

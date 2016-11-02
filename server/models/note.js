@@ -10,6 +10,37 @@ function Note(note) {
 
 module.exports = Note;
 
+//根据作者和文章id，返回文章
+Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
+
+	var BSON_id = require('mongodb').ObjectID.createFromHexString(noteid);
+
+	mongodb.open(function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		db.collection('note', function(err, collection) {
+			if (err) {
+				mongodb.close();
+				return callback(err);
+			}
+			//查找文章
+			collection.find({
+				author: author,
+				_id: BSON_id
+			}).toArray(function(err, notes) {
+				console.log(notes);
+				mongodb.close();
+				if (err) {
+					return callback(err);
+				}
+				callback(null, notes);
+			});
+		});
+	});
+};
+
+//获取一个做的所有标签，返回标签对象
 Note.gettags = function(author, callback) {
 	var _this = this;
 
@@ -47,6 +78,7 @@ Note.gettags = function(author, callback) {
 	});
 };
 
+//根据一个标签获取有该标签的文章
 Note.getNoteByTag = function(tag, author, callback) {
 	// console.log(tag);
 
@@ -78,6 +110,7 @@ Note.getNoteByTag = function(tag, author, callback) {
 	});
 };
 
+//获取作者的所有文章
 Note.get = function(author, callback) {
 	mongodb.open(function(err, db) {
 		if (err) {
