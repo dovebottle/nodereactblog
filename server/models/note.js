@@ -24,7 +24,13 @@ Note.get = function(author, callback) {
 			collection.find({
 				author: author
 			}).toArray(function(err, note) {
-				console.log(note);
+				if (note.length > 0) {
+					for (var i = 0; i < note.length; i++) {
+						var time = note[i].time.getFullYear() + "-" + (note[i].time.getMonth()+1) + "-" + note[i].time.getDate();
+						note[i].time = time;
+					}
+				}
+				// console.log(note);
 				mongodb.close();
 				if (err) {
 					return callback(err);
@@ -40,7 +46,7 @@ Note.prototype.save = function(callback) {
 		author: this.author,
 		title: this.title,
 		content: this.content,
-		tegs: this.tags,
+		tags: this.tags,
 		time: this.time
 	};
 

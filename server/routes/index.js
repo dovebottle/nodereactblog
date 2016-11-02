@@ -7,6 +7,7 @@ module.exports = function (app) {
     // app.use('/page2', require('./page2'));
 
     app.get('/', function(req, res) {
+    	// console.log(req.session);
     	res.render('index', {
     		user: req.session.user,
     		success: req.flash('success').toString(),
@@ -26,12 +27,12 @@ module.exports = function (app) {
 	app.get('/mynote', checkLogin);
 	app.get('/mynote', function(req, res) {
 		Note.get(req.session.user.name, function(err, note) {
-			// console.log(note);
 
 			res.render('mynote', {
 				user: req.session.user,
 	    		success: req.flash('success').toString(),
-	    		error: req.flash('error').toString()
+	    		error: req.flash('error').toString(),
+	    		note: note
 			});
 		});
 	});
@@ -63,7 +64,7 @@ module.exports = function (app) {
 		});
 
 		newNote.save(function(err, note) {
-			console.log(note);
+			// console.log(note);
 			if (err) {
 				console.log(err);
 			}

@@ -7,7 +7,9 @@ var productionConfig = [{
     entry: {
         page1: './client/page1',
         page2: './client/page2',
-        addnote: './client/addnote/addnote.js'
+        addnote: './client/addnote/addnote.js',
+        mynote: './client/mynote/mynote.js'
+
     },
     output: {
         filename: './[name]/bundle.js',

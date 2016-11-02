@@ -1,13 +1,34 @@
 <%- include header %>
 <% if (env === "production") { %>
-    <link rel="stylesheet" href="/addnote/index.css">
+    <link rel="stylesheet" href="/mynote/index.css">
 <% } %>
 <div class="container">
     
     <%- include funlist %>
     <div class="mynote_box">
-        
+        <% if (note.length > 0) { %>
+            <ul>
+            <% for(var i = 0; i < note.length; i++) { %>
+                <!-- <p><%= note[i].title %></p> -->
+                    <li>
+                        <div><%= note[i].time %></div>
+                        <h3><a class="note_title" href=""><%= note[i].title %></a></h3>
+                        <div>
+                            <span class="read_times">阅读100</span>
+                            <% if (note[i].tags.length > 0) { %>
+                                <% for (var j = 0; j < note[i].tags.length; j++) { %>
+                                <a href="" class="tag"><%= note[i].tags[j] %></a>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </li>
+            <% } %>
+            </ul>
+        <% } else { %>
+                <p>no note</p>
+        <% } %>
     </div>
 </div>
 
+<script src="/mynote/bundle.js"></script>
 <%- include footer %>

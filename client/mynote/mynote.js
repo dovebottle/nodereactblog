@@ -1,0 +1,1 @@
+import styles from './mynote.scss';//scss导入
