@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Tags_box from './Tags_box.js';
+import Notes_box from './Notes_box.js';
+import styles from './mytags.scss';//scss导入
 
 class Notes extends React.Component {
 	constructor(props) {
@@ -19,7 +21,7 @@ class Notes extends React.Component {
 		mytags_ajax.onreadystatechange = function() {
 			if (mytags_ajax.readyState == 4 && mytags_ajax.status == 200) {
 				var tags_result = JSON.parse(mytags_ajax.responseText);
-				console.log(tags_result);
+				// console.log(tags_result);
 
 				//获得第一个标签
 				var tags_first = Object.keys(tags_result)[0];
@@ -32,7 +34,7 @@ class Notes extends React.Component {
 				firstNotes_ajax.onreadystatechange = function() {
 					if (firstNotes_ajax.readyState == 4 && firstNotes_ajax.status == 200) {
 						var notes_result = JSON.parse(firstNotes_ajax.responseText);
-						console.log(notes_result);
+						// console.log(notes_result);
 
 						//设置数据
 						_this.setState({
@@ -53,7 +55,10 @@ class Notes extends React.Component {
 
 	render() {
 		return(
-			<div>嘿嘿嘿</div>
+			<div className="mytags_react">
+			<Tags_box tagsobj={this.state.tagsobj} />
+			<Notes_box firstTagNote={this.state.firstTagNote} />
+			</div>
 		);
 	}
 }
