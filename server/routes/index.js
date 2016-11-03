@@ -274,6 +274,14 @@ module.exports = function (app, express) {
 		res.redirect('/');//登出成功后跳转到主页
 	});
 
+	app.get('*', function(req, res) {
+		res.render('404', {
+			user: req.session.user,
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+
 	//登出的时候判断是否登录
 	function checkLogin(req, res, next) {
 		if (!req.session.user) {
