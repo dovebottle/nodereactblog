@@ -19,9 +19,8 @@ module.exports = function (app, express) {
     	});
     });
 
+//作者页面
     app.get('/authorpage/:author', function(req, res) {
-    	//作者页面
-
     	res.render('index', {
     		user: req.session.user,
     		success: req.flash('success').toString(),

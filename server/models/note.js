@@ -13,7 +13,31 @@ module.exports = Note;
 //文章更新
 Note.edit = function(note, callback) {
 	console.log(note);
-	callback(null, 'hh');
+	var BSON_id = require('mongodb').ObjectID.createFromHexString(note._id);
+	mongodb.open(function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		db.collection('note', function(err, collection) {
+			if (err) {
+				mongodb.close();
+				return callback(err);
+			}
+			//查找文章
+			collection.update({
+				_id: BSON_id
+			}, {$set: {title: note.title, content: note.content, tags: note.tags}}, {upsert: false, multi: false}).toArray(function(err, notes) {
+				//update没有返回值，为空
+				console.log('notes');
+				mongodb.close();
+				if (err) {
+					return callback(err);
+				}
+				callback(null, notes);
+			});
+		});
+	});
+
 };
 
 //根据objectID软删除文章
@@ -113,7 +137,6 @@ Note.gettags = function(author, callback) {
 					return callback(err);
 				}
 				callback(null, tagsobj);
-				// _this.getNoteByTagsobj(author, callback, tagsobj);
 			});
 		});
 	});
@@ -121,8 +144,6 @@ Note.gettags = function(author, callback) {
 
 //根据一个标签获取有该标签的文章
 Note.getNoteByTag = function(tag, author, callback) {
-	// console.log(tag);
-
 	mongodb.open(function(err, db) {
 		if (err) {
 			return callback(err);
@@ -138,14 +159,12 @@ Note.getNoteByTag = function(tag, author, callback) {
 				author: author,
 				delete: false,
 				tags: {$in:[tag]}
-				// tags: {$in:['哈哈']}
 			}).toArray(function(err, notes) {
 				// console.log(notes);
 				mongodb.close();
 				if (err) {
 					return callback(err);
 				}
-				// tagsobj[value] = notes;
 				callback(null, notes);
 			});
 		});

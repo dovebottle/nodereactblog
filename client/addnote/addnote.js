@@ -2,7 +2,6 @@ import styles from './addnote.scss';//scss导入
 
 let addnote = {
 	init: function() {
-		console.log('addnoteinit');
 		this.addnote();
 		
 	},
@@ -24,7 +23,6 @@ let addnote = {
 					//add ajax
 					var add_ajax = new XMLHttpRequest();
 					add_ajax.open('post', '/addnote');
-					console.log(add_form.title.value);
 					add_ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
 					add_ajax.onreadystatechange = function(data) {
 						if (add_ajax.readyState == 4 && add_ajax.status == 200) {
@@ -44,11 +42,8 @@ let addnote = {
 
 					//edit ajax
 					var data_author = event.target.getAttribute('data-author');
-
-					console.log(objectID);
 					var edit_ajax = new XMLHttpRequest();
 					edit_ajax.open('post', '/editnote');
-					console.log(add_form.title.value);
 					edit_ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
 					edit_ajax.onreadystatechange = function() {
 						if (edit_ajax.readyState == 4 && edit_ajax.status == 200) {
@@ -76,4 +71,3 @@ let addnote = {
 };
 
 addnote.init();
-// export default addnote;
