@@ -9,19 +9,27 @@ class Notes extends React.Component {
 		super(props);
 		this.state = {
 			tagsobj: {},
-			firstTagNote:[{
-				_id: 'index',
-				author: 'index',
-				content: 'index',
-				tags: [],
-				time: 'index',
-				title: ''
-			}]
+			firstTagNote:[]
+			// firstTagNote:[{
+			// 	_id: 'index',
+			// 	author: 'index',
+			// 	content: 'index',
+			// 	tags: [],
+			// 	time: 'index',
+			// 	title: ''
+			// }]
 		};
 	}
 
 	clickTag(firstTagNote) {
 		this.setState({
+			firstTagNote: firstTagNote
+		});
+	}
+
+	clickNote(tagsobj, firstTagNote) {
+		this.setState({
+			tagsobj: tagsobj,
 			firstTagNote: firstTagNote
 		});
 	}
@@ -78,6 +86,7 @@ class Notes extends React.Component {
 			}
 			<Notes_box 
 				firstTagNote={this.state.firstTagNote} 
+				onclickNote={this.state.clickNote}
 			/>
 			</div>
 		);

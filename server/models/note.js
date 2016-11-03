@@ -27,6 +27,7 @@ Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 			//查找文章
 			collection.find({
 				author: author,
+				delete: false,
 				_id: BSON_id
 			}).toArray(function(err, notes) {
 				console.log(notes);
@@ -59,7 +60,8 @@ Note.gettags = function(author, callback) {
 			}
 			//通过作者找文章
 			collection.find({
-				author: author
+				author: author,
+				delete: false
 			}).toArray(function(err, note) {
 				var tagsobj = {};
 				if (note.length > 0) {
@@ -99,6 +101,7 @@ Note.getNoteByTag = function(tag, author, callback) {
 			//通过tag找文章
 			collection.find({
 				author: author,
+				delete: false,
 				tags: {$in:[tag]}
 				// tags: {$in:['哈哈']}
 			}).toArray(function(err, notes) {
@@ -127,7 +130,8 @@ Note.get = function(author, callback) {
 			}
 			//通过作者名字查找文章
 			collection.find({
-				author: author
+				author: author,
+				delete: false
 			}).toArray(function(err, note) {
 				if (note.length > 0) {
 					for (var i = 0; i < note.length; i++) {
@@ -152,7 +156,8 @@ Note.prototype.save = function(callback) {
 		title: this.title,
 		content: this.content,
 		tags: this.tags,
-		time: this.time
+		time: this.time,
+		delete: false
 	};
 
 	mongodb.open(function(err, db) {

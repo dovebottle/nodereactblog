@@ -28,14 +28,29 @@
 	}
 	.notes_box {
 		padding: 20px 5px 20px;
-		a {
-			display: block;
+		.note_title {
+			display: inline-block;
 			text-decoration: none;
 			color: #000;
 			margin: 5px 0;
 		}
-		a:hover {
+		.note_title:hover {
 			text-decoration: underline;
+		}
+		li {
+			.note_edit, span {
+				padding: 5px;
+				color: #A2A1A1;
+				float: right;
+				cursor: pointer;
+				line-height: 18px;
+			}
+			.note_edit:hover, span:hover {
+				text-decoration: underline;
+				color: #fff;
+				background-color: #ddd;
+				border-radius: 2px;
+			}
 		}
 	}
 }
