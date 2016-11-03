@@ -42,7 +42,7 @@ class Notes_box extends React.Component {
 					notes.map(function(value, index) {
 						return <li key={value._id}>
 						<span data-deleteid={value._id}>delete</span>
-						<a className="note_edit" data-editid={value._id}>edit</a>
+						<a className="note_edit" href={'/edit/'+value.author+'/'+value._id} data-editid={value._id}>edit</a>
 						<a className="note_title" href={'/notes/'+value.author+'/'+value._id} data-noteid={value._id} key={value.title} >{value.title}</a>
 						</li>;
 					})

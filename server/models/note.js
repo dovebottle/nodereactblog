@@ -10,6 +10,12 @@ function Note(note) {
 
 module.exports = Note;
 
+//文章更新
+Note.edit = function(note, callback) {
+	console.log(note);
+	callback(null, 'hh');
+};
+
 //根据objectID软删除文章
 Note.deletenote = function(objectID, callback) {
 	var BSON_id = require('mongodb').ObjectID.createFromHexString(objectID);

@@ -38,7 +38,6 @@ module.exports = function (app, express) {
     });
 
 //文章页面
-
 	app.get('/notes/:author/:noteid', function(req, res) {
 		console.log(req.params.author);
 		Note.getNoteByAuthorNoteid(req.params.author, req.params.noteid, function(err, note) {
@@ -103,7 +102,7 @@ module.exports = function (app, express) {
 	app.get('/mynote', checkLogin);
 	app.get('/mynote', function(req, res) {
 		Note.get(req.session.user.name, function(err, note) {
-
+			// console.log(note);
 			res.render('mynote', {
 				user: req.session.user,
 	    		success: req.flash('success').toString(),
@@ -113,13 +112,42 @@ module.exports = function (app, express) {
 		});
 	});
 
+//编辑笔记
+	app.get('/edit/:author/:noteid', checkLogin);
+	//判断编辑者就是作者
+	app.get('/edit/:author/:noteid', function(req, res) {
+		Note.getNoteByAuthorNoteid(req.params.author, req.params.noteid, function(err, note) {
+			res.render('addnote', {
+	    		user: req.session.user,
+	    		success: req.flash('success').toString(),
+				error: req.flash('error').toString(),
+				note: note,
+				status: 'edit'
+	    	});
+		});
+	});
+
+	app.post('/editnote', checkLogin);
+	app.post('/editnote', function(req, res) {
+		var note = {
+			_id: req.body.objectID,
+			title: req.body.title,
+			content: req.body.content,
+			tags: strToArr(req.body.tags, /[,，]/)
+		};
+		Note.edit(note, function(err, note) {
+			res.send(note);
+		});
+	});
+
 //新建笔记
 	app.get('/addnote', checkLogin);
 	app.get('/addnote', function(req, res) {
 		res.render('addnote', {
 			user: req.session.user,
     		success: req.flash('success').toString(),
-    		error: req.flash('error').toString()
+    		error: req.flash('error').toString(),
+    		status: 'add'
 		});
 	});
 

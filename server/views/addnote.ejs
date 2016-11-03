@@ -7,10 +7,18 @@
     <%- include funlist %>
     <div class="new_article_box" id="new_article_box">
         <form id="addnote_form">
+            <% if (status === "add") { %>
             <input type="text" id="addnote_title" name="title" placeholder="题目" class="title">
             <textarea rows="15" id="addnote_con" name="content" class="content" placeholder="正文"></textarea>
             <input type="text" name="tags" placeholder="标签(用,隔开)" class="tags">
             <input type="button" id="addnote_sub_btn" value="提交笔记" class="submit">
+            <% } else if (status === "edit") { %>
+            <input type="text" id="addnote_title" name="title" placeholder="题目" class="title" value="<%= note[0].title %>">
+            <textarea rows="15" id="addnote_con" name="content" class="content" placeholder="正文"><%= note[0].content %></textarea>
+            <input type="text" name="tags" placeholder="标签(用,隔开)" class="tags" value="<%
+                for (var i = 0; i < note[0].tags.length; i++) { %><%= note[0].tags[i] %>,<% } %>">
+            <input type="button" id="addnote_sub_btn" data-author=<%= note[0].author %> data-objectid="<%= note[0]._id %>" value="更新笔记" class="submit">
+            <% } %>
         </form>
         <div class="new_status" id="new_status_box">
             <p class="new_status_content" id="new_status_content"><span id="new_status"></span><a href="" id="new_title"></a></p>
