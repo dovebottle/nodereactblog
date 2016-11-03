@@ -27,8 +27,8 @@ Note.deletenote = function(objectID, callback) {
 			collection.update({
 				_id: BSON_id
 			}, {$set: {delete: true}}, {upsert: false, multi: false}).toArray(function(err, notes) {
+				//update没有返回值，为空
 				console.log('notes');
-				console.log(notes);
 				mongodb.close();
 				if (err) {
 					return callback(err);
@@ -161,7 +161,7 @@ Note.get = function(author, callback) {
 			collection.find({
 				author: author,
 				delete: false
-			}).toArray(function(err, note) {
+			}).sort({_id: -1}).toArray(function(err, note) {
 				if (note.length > 0) {
 					for (var i = 0; i < note.length; i++) {
 						var time = note[i].time.getFullYear() + "-" + (note[i].time.getMonth()+1) + "-" + note[i].time.getDate();

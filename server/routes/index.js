@@ -83,8 +83,8 @@ module.exports = function (app, express) {
 //根据id删除笔记
 	app.post('/deletenote', checkLogin);
 	app.post('/deletenote', function(req, res) {
-			console.log(req.body.objectID);
 		Note.deletenote(req.body.objectID, function(err, result) {
+			//update没有返回值
 			res.send(result);
 		});
 	});

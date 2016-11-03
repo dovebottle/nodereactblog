@@ -34,7 +34,7 @@ class Notes extends React.Component {
 		});
 	}
 
-	componentDidMount() {
+	refreshDate() {
 		var _this = this;
 		var mytags_ajax = new XMLHttpRequest();
 		mytags_ajax.open('post', '/mytags');
@@ -72,6 +72,11 @@ class Notes extends React.Component {
 			}
 		};
 		mytags_ajax.send();
+
+	}
+
+	componentDidMount() {
+		this.refreshDate();
 	}
 
 	render() {
@@ -86,7 +91,7 @@ class Notes extends React.Component {
 			}
 			<Notes_box 
 				firstTagNote={this.state.firstTagNote} 
-				onclickNote={this.state.clickNote}
+				onclickDelete={this.refreshDate.bind(this)}
 			/>
 			</div>
 		);
