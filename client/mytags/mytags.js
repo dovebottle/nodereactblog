@@ -20,6 +20,12 @@ class Notes extends React.Component {
 		};
 	}
 
+	clickTag(firstTagNote) {
+		this.setState({
+			firstTagNote: firstTagNote
+		});
+	}
+
 	componentDidMount() {
 		var _this = this;
 		var mytags_ajax = new XMLHttpRequest();
@@ -54,7 +60,7 @@ class Notes extends React.Component {
 				};
 				firstNotes_ajax.send("tag="+tags_first);
 			} else {
-						// dosomething
+				// dosomething
 			}
 		};
 		mytags_ajax.send();
@@ -63,8 +69,16 @@ class Notes extends React.Component {
 	render() {
 		return(
 			<div className="mytags_react">
-			<Tags_box tagsobj={this.state.tagsobj} />
-			<Notes_box firstTagNote={this.state.firstTagNote} />
+			<Tags_box 
+				tagsobj={this.state.tagsobj} 
+				onclickTag={this.clickTag.bind(this)} 
+			/>
+			{
+				//bind(this)使得子组件调用的时候this的正确指向
+			}
+			<Notes_box 
+				firstTagNote={this.state.firstTagNote} 
+			/>
 			</div>
 		);
 	}

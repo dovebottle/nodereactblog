@@ -3,7 +3,6 @@ import React from 'react';
 class Notes_box extends React.Component {
 	render() {
 		var notes = this.props.firstTagNote;
-		console.log(notes);
 		return(
 			<div className="notes_box">
 				{
