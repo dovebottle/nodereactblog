@@ -10,6 +10,35 @@ function Note(note) {
 
 module.exports = Note;
 
+//根据objectID软删除文章
+Note.deletenote = function(objectID, callback) {
+	var BSON_id = require('mongodb').ObjectID.createFromHexString(objectID);
+
+	mongodb.open(function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		db.collection('note', function(err, collection) {
+			if (err) {
+				mongodb.close();
+				return callback(err);
+			}
+			//查找文章
+			collection.update({
+				_id: BSON_id
+			}, {$set: {delete: true}}, {upsert: false, multi: false}).toArray(function(err, notes) {
+				console.log('notes');
+				console.log(notes);
+				mongodb.close();
+				if (err) {
+					return callback(err);
+				}
+				callback(null, notes);
+			});
+		});
+	});
+};
+
 //根据作者和文章id，返回文章
 Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 

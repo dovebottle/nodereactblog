@@ -80,6 +80,15 @@ module.exports = function (app, express) {
 		});
 	});
 
+//根据id删除笔记
+	app.post('/deletenote', checkLogin);
+	app.post('/deletenote', function(req, res) {
+			console.log(req.body.objectID);
+		Note.deletenote(req.body.objectID, function(err, result) {
+			res.send(result);
+		});
+	});
+
 //通过标签和作者获取文章组
 	app.post('/tagToNote', checkLogin);
 	app.post('/tagToNote', function(req, res) {

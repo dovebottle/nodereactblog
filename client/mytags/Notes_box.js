@@ -7,6 +7,24 @@ class Notes_box extends React.Component {
 		var editID = event.target.getAttribute('data-editid');
 		if (deleteID) {
 			console.log("deleteID:"+deleteID);
+
+			//根据objectID更新笔记delete字段
+			var deleteNotes_ajax = new XMLHttpRequest();
+			deleteNotes_ajax.open('post', '/deletenote');
+			deleteNotes_ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+			deleteNotes_ajax.onreadystatechange = function() {
+				if (deleteNotes_ajax.readyState == 4 && deleteNotes_ajax.status == 200) {
+					// var notes_result = JSON.parse(deleteNotes_ajax.responseText);
+					console.log(deleteNotes_ajax.responseText);
+
+					//设置数据
+					
+				} else {
+					//dosomething
+				}
+			};
+			deleteNotes_ajax.send("objectID="+deleteID);
+
 		}
 		if (editID) {
 			console.log("editID:"+editID);

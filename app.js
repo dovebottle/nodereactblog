@@ -16,6 +16,13 @@ var isDev = process.env.NODE_ENV !== 'production';//true : dev
 var app = express();
 var port = 13300;
 
+//
+// require('events').EventEmitter.prototype._maxListeners = 0;
+//
+// var EventEmitter = require('events');
+// var myEE = new EventEmitter();
+// myEE.setMaxListeners(0);
+
 app.set('view engine', 'ejs');
 
 //若直接使用html，设置如下
