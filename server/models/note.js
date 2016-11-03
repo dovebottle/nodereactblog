@@ -34,6 +34,10 @@ Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 				if (err) {
 					return callback(err);
 				}
+				if (notes.length > 0) {
+					var time = notes[0].time.getFullYear() + "-" + (notes[0].time.getMonth()+1) + "-" + notes[0].time.getDate();
+					notes[0].time = time;
+				}
 				callback(null, notes);
 			});
 		});

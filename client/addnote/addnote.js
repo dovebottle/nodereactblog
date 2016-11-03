@@ -30,6 +30,7 @@ let addnote = {
 
 						document.getElementById('new_status').innerHTML = "√发表成功：";
 						document.getElementById('new_title').innerHTML = new_note.title;
+						document.getElementById('new_title').setAttribute('href', "/notes/"+new_note.author+"/"+new_note._id);
 						document.getElementById("new_status_box").style.display = "block";
 					} else {
 						// dosomething

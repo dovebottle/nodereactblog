@@ -9,7 +9,14 @@ class Notes extends React.Component {
 		super(props);
 		this.state = {
 			tagsobj: {},
-			firstTagNote:[]
+			firstTagNote:[{
+				_id: 'index',
+				author: 'index',
+				content: 'index',
+				tags: [],
+				time: 'index',
+				title: ''
+			}]
 		};
 	}
 

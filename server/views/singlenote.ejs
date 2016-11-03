@@ -4,7 +4,21 @@
 <% } %>
 
 <% if (note.length > 0) { %>
-<h3><%= note[0].title %></h3>
+<div class="note_box">
+	<h2 class="note_title"><%= note[0].title %></h2>
+	<div class="note_info">
+		<span class="note_author">by: <a href="/authorpage/<%= note[0].author %>"><%= note[0].author %></a></span>
+		<span class="note_read">阅读99</span>
+		<span class="note_comment">评论88</span>
+		<span class="note_like">喜欢520</span>
+
+		<span class="note_time"><%= note[0].time %></span>
+	</div>
+	<div class="content">
+		<%= note[0].content %>
+	</div>
+</div>
+<div class="nosureyet"></div>
 <% } else { %>
 <p>文章抓取出错惹。</p>
 <% } %>

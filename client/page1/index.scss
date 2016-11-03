@@ -6,6 +6,7 @@
 	height: 100%;
 }
 .author {
+	position: fixed;
 	width: 25%;
 	min-width: 150px;
 	background-color: #e8e8e8;
@@ -60,7 +61,15 @@
 		}
 	}
 }
-
+.indexpage_box {
+	width: 75%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px;
+	box-sizing: border-box;
+}
 
 
 .first-note {

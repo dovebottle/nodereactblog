@@ -8,7 +8,7 @@ class Notes_box extends React.Component {
 			<div className="notes_box">
 				{
 					notes.map(function(value, index) {
-						return <a href="" data-noteid={value._id} key={value.title} >·{value.title}</a>;
+						return <a href={'/notes/'+value.author+'/'+value._id} data-noteid={value._id} key={value.title} >·{value.title}</a>;
 					})
 				}
 			</div>

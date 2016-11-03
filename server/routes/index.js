@@ -6,9 +6,22 @@ module.exports = function (app, express) {
     // app.use('/', require('./page1'));
     // app.use('/page2', require('./page2'));
     var router = express.Router();
+    router.param(['author', 'noteid'], function(req, res, next, value) {
+		next();
+	});
 
     app.get('/', function(req, res) {
     	// console.log(req.session);
+    	res.render('index', {
+    		user: req.session.user,
+    		success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+    	});
+    });
+
+    app.get('/authorpage/:author', function(req, res) {
+    	//作者页面
+
     	res.render('index', {
     		user: req.session.user,
     		success: req.flash('success').toString(),
@@ -25,9 +38,7 @@ module.exports = function (app, express) {
     });
 
 //文章页面
-	router.param(['author', 'noteid'], function(req, res, next, value) {
-		next();
-	});
+
 	app.get('/notes/:author/:noteid', function(req, res) {
 		console.log(req.params.author);
 		Note.getNoteByAuthorNoteid(req.params.author, req.params.noteid, function(err, note) {

@@ -12,7 +12,7 @@
                 <!-- <p><%= note[i].title %></p> -->
                     <li>
                         <div><%= note[i].time %></div>
-                        <h3><a class="note_title" href=""><%= note[i].title %></a></h3>
+                        <h3><a class="note_title" href="/notes/<%= note[i].author %>/<%= note[i]._id %>"><%= note[i].title %></a></h3>
                         <div>
                             <span class="read_times">阅读100</span>
                             <% if (note[i].tags.length > 0) { %>

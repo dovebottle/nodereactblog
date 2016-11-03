@@ -1,0 +1,37 @@
+@import '../common/common';
+
+.note_box {
+	padding: 10px;
+
+	.note_title {
+		text-align: center;
+	}
+	.note_info {
+		color: #B6B4B4;
+		span {
+			margin-left: 5px;
+		}
+		span:nth-child(1) {
+			margin-left: 0;
+		}
+		.note_author {
+			a {
+				text-decoration: none;
+				color: #461FF3;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+		}
+		.note_time {
+			float: right;
+		}
+	}
+	.content {
+		margin : 30px 0;
+	}
+}
+.nosureyet {
+	margin: 10px;
+	border-top: 2px solid #ddd;
+}
