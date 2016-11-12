@@ -72,6 +72,31 @@
 	padding: 20px;
 	box-sizing: border-box;
 	text-align: center;
+	.status_box {
+		position: relative;
+		list-style: none;
+		width: 80%;
+		margin: 0 10%;
+		padding: 20px 0px; 
+		border-left: 2px dotted #CACACA;
+		.status_pic {
+			position: absolute;
+			top: 50%;
+			left: -16px;
+			width: 30px;
+			height: 30px;
+			margin-top: -15px;
+			border-radius: 50%;
+		}
+		.status_con {
+			font-size: 18px;
+			text-align: left;
+			margin-left: 25px;
+			a {
+				text-decoration: none;
+			}
+		}
+	}
 }
 .img404 {
 	width: 100%;

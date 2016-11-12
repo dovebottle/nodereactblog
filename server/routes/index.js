@@ -11,12 +11,21 @@ module.exports = function (app, express) {
 	});
 
     app.get('/', function(req, res) {
-    	// console.log(req.session);
-    	res.render('index', {
-    		user: req.session.user,
-    		success: req.flash('success').toString(),
-			error: req.flash('error').toString()
-    	});
+    	var no_name;
+    	if (req.session.user) {
+    		no_name = req.session.user.name;
+    	} else {
+    		no_name = 'nodejs_nobody';
+    	}
+    	Note.get(no_name, function(err, note) {
+			// console.log(note);
+			res.render('index', {
+				user: req.session.user,
+	    		success: req.flash('success').toString(),
+	    		error: req.flash('error').toString(),
+	    		note: note
+			});
+		});
     });
 
 //作者页面

@@ -5,7 +5,19 @@
     <%- include funlist %>
 
     <div class="indexpage_box">
-        首页放点什么好
+                <% if (note.length > 0) { %>
+			<h3>最新动态</h3>
+            <ul>
+            <% for(var i = 0; i < note.length; i++) { %>
+                    <li class="status_box">
+                    	<img class="status_pic" src="page1/bottle.jpg">
+                        <div class="status_con"><%= note[i].time %>&nbsp;&nbsp;&nbsp;发表了:&nbsp;&nbsp;<a class="status_note" href="/notes/<%= note[i].author %>/<%= note[i]._id %>"><%= note[i].title %></a></div>
+                    </li>
+            <% } %>
+            </ul>
+        <% } else { %>
+            <h3>没有动态</h3>
+        <% } %>
     </div>
 </div>
 
