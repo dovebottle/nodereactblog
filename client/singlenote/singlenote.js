@@ -1,5 +1,5 @@
 // import $ from '../lib/jquery.min.js';//scss导入
-// import styles from './singlenote.scss';//scss导入
+import styles from './singlenote.scss';//scss导入
 
 var $ = require('jquery');
 var add_commen = {

@@ -2,6 +2,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
+
 
 var productionConfig = [{
     entry: {
@@ -12,6 +14,9 @@ var productionConfig = [{
         mytags: './client/mytags/mytags.js',
         singlenote: './client/singlenote/singlenote.js'
 
+    },
+    externals: {
+        jquery: 'window.$'
     },
     output: {
         filename: './[name]/bundle.js',
@@ -36,6 +41,10 @@ var productionConfig = [{
     },
     plugins: [
         new CleanWebpackPlugin(['public']),
+        //把指定文件夹下的文件复制到指定的目录
+        new TransferWebpackPlugin([
+            {from: './client/lib', to: './lib'}
+        ], path.resolve(__dirname)),
         new ExtractTextPlugin('./[name]/index.css', {
             allChunks: true
         }),

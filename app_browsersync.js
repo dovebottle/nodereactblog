@@ -16,9 +16,6 @@ var isDev = process.env.NODE_ENV !== 'production';
 var app = express();
 var port = 13300;
 
-// app.engine('html', consolidate.ejs);
-// app.set('view engine', 'html');
-
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, './server/views'));
 
@@ -62,8 +59,7 @@ if (isDev) {
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app, express);
 
-    // browsersync is a nice choice when modifying only views (with their css & js)
-    //views下面的模板文件修改时不需要重启node服务器（routes需要）
+    //views下面的模板文件修改时不需要重启node服务器
     var bs = require('browser-sync').create();
     app.listen(port, function(){
         bs.init({
@@ -76,7 +72,6 @@ if (isDev) {
         });
         console.log('App (dev) is going to be running on port 8080 (by browsersync).');
     });
-
 } else {
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app, express);

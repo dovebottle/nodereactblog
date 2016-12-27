@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 var publicPath = 'http://localhost:13300/';
 //reload=true的意思是，如果碰到不能hot reload的情况，就整页刷新。
@@ -42,6 +43,10 @@ var devConfig = {
         }]
     },
     plugins: [
+        //把指定文件夹下的文件复制到指定的目录
+        new TransferWebpackPlugin([
+            {from: './client/lib', to: './lib'}
+        ], path.resolve(__dirname)),
         //webpack就能够比对id的使用频率和分布来得出最短的id分配给使用频率高的模块
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),

@@ -46,7 +46,7 @@ app.use(session({
   key: settings.db,//cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 10},//30 days
   store: new MongoStore({
-    //connect-mongo已经更新了
+    //connect-mongo已经更新了配置方式
     url: 'mongodb://'+ settings.host +':'+ settings.port +'/' + settings.db
     // db: settings.db,
     // host: settings.host,
@@ -56,19 +56,19 @@ app.use(session({
 app.use(flash());
 
 if (isDev) {
-
     //开发环境，静态文件使用热插拔
     var webpack = require('webpack'),
         webpackDevMiddleware = require('webpack-dev-middleware'),
         webpackHotMiddleware = require('webpack-hot-middleware'),
         webpackDevConfig = require('./webpack.config.js');
+        webpackDllConfig = require('./webpack.dll.config.js');
 
+    var dll = webpack(webpackDllConfig);
     var compiler = webpack(webpackDevConfig);
 
-    // attach to the compiler & the server
+    // 热插拔
     app.use(webpackDevMiddleware(compiler, {
-
-        // public path should be the same with webpack config
+        // publicPath与webpack.config.js保持一致
         publicPath: webpackDevConfig.output.publicPath,
         noInfo: true,
         stats: {
@@ -76,28 +76,23 @@ if (isDev) {
         }
     }));
     app.use(webpackHotMiddleware(compiler));
-    //不能惹插拔的往下执行
 
-    // app.use(express.static(path.join(__dirname, 'public')));
-    // require('./server/routes')(app, express);
-
-    // add "reload" to express, see: https://www.npmjs.com/package/reload
+    // 不能热插拔的往下执行
     var reload = require('reload');
     var http = require('http');
-
     var server = http.createServer(app);
     reload(server, app);
-
     server.listen(port, function(){
         console.log('App (dev) is now running on port 13300!');
     });
 
-    //静态目錄設置放在reload後面，避免頁面引入reload.js報錯
+    //静态目录设置必须有，开发环境读取的vendor.js不是内存文件;
+    //静态目录设置必须放在reload后面，避免页面引入reload.js报错
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app, express);
 } else {
     //线上环境不需要监听，只需开启node服务即可
-    // static assets served by express.static() for production
+    //设置node的静态文件目录
     app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app, express);
     app.listen(port, function () {

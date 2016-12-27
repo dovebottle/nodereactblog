@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev supervisor -w server,app.js app",
-    "browsersync": "cross-env NODE_ENV=dev node app_browsersync",
     "build": "webpack --colors --profile --display-modules",
     "builddll": "webpack --config webpack.dll.config.js",
+    "start": "cross-env NODE_ENV=dev supervisor -w server,app.js app",
+    "browsersync": "cross-env NODE_ENV=dev node app_browsersync",
     "production": "webpack --config webpack.production.config.js -p & cross-env NODE_ENV=production node app"
   },
   "author": "bottlejiang",
@@ -20,7 +20,8 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
-    "mongodb": "^2.2.11"
+    "mongodb": "^2.2.11",
+    "transfer-webpack-plugin": "^0.1.4"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
