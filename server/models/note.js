@@ -89,6 +89,9 @@ Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 				delete: false,
 				_id: BSON_id
 			}).toArray(function(err, notes) {
+				notes[0].content = notes[0].content
+				.replace(/\<script\>/g, "&lt;script&gt;")
+				.replace(/<\/script>/g, "&lt;/script&gt;");
 				console.log(notes);
 				mongodb.close();
 				if (err) {

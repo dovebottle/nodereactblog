@@ -30,20 +30,30 @@ module.exports = function (app, express) {
 
 //作者页面
     app.get('/authorpage/:author', function(req, res) {
-    	res.render('index', {
-    		user: req.session.user,
-    		success: req.flash('success').toString(),
-			error: req.flash('error').toString()
-    	});
+    	var no_name;
+    	if (req.session.user) {
+    		no_name = req.session.user.name;
+    	} else {
+    		no_name = 'nodejs_nobody';
+    	}
+    	Note.get(no_name, function(err, note) {
+			// console.log(note);
+			res.render('index', {
+				user: req.session.user,
+	    		success: req.flash('success').toString(),
+	    		error: req.flash('error').toString(),
+	    		note: note
+			});
+		});
     });
 
-    app.get('/page2', function(req, res) {
-    	res.render('page2', {
-    		user: req.session.user,
-    		success: req.flash('success').toString(),
-    		error: req.flash('error').toString()
-    	});
-    });
+    // app.get('/page2', function(req, res) {
+    // 	res.render('page2', {
+    // 		user: req.session.user,
+    // 		success: req.flash('success').toString(),
+    // 		error: req.flash('error').toString()
+    // 	});
+    // });
 
 //文章页面
 	app.get('/notes/:author/:noteid', function(req, res) {

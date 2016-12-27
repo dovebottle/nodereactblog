@@ -59,6 +59,7 @@ if (isDev) {
     }));
     app.use(webpackHotMiddleware(compiler));
 
+    app.use(express.static(path.join(__dirname, 'public')));
     require('./server/routes')(app, express);
 
     // browsersync is a nice choice when modifying only views (with their css & js)

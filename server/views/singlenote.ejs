@@ -4,18 +4,36 @@
 <% } %>
 
 <% if (note.length > 0) { %>
-<div class="note_box">
-	<h2 class="note_title"><%= note[0].title %></h2>
-	<div class="note_info">
-		<span class="note_author">by: <a href="/authorpage/<%= note[0].author %>"><%= note[0].author %></a></span>
-		<span class="note_read">阅读99</span>
-		<span class="note_comment">评论88</span>
-		<span class="note_like">喜欢520</span>
+<div class="note_page_box">
+	
+	<div class="note_box">
+		<h2 class="note_title"><%= note[0].title %></h2>
+		<div class="note_info">
+			<span class="note_author">by: <a href="/authorpage/<%= note[0].author %>"><%= note[0].author %></a></span>
+			<span class="note_read">阅读99</span>
+			<span class="note_comment">评论88</span>
+			<span class="note_like">喜欢520</span>
 
-		<span class="note_time"><%= note[0].time %></span>
+			<span class="note_time"><%= note[0].time %></span>
+		</div>
+		<div class="content" id="content_jq">
+			<%- note[0].content %>
+			<div id="pencilIcon" class="pencilIcon" ></div>
+		</div>
 	</div>
-	<div class="content">
-		<%= note[0].content %>
+
+
+	<div class="note_comment_box" id="comment_jq">
+		<div id="add_comment">新增</div>
+	</div>
+	<div id="comment_window" class="comment_window">
+		<div class="comment_container">
+			<div class="window_title">添加评论<div id="close" class="close">×</div></div>
+			<textarea class="window_content"></textarea>
+			<div class="window_footer">
+				<div id="window_add" class="window_add">確定</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="nosureyet"></div>

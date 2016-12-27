@@ -78,7 +78,8 @@ if (isDev) {
     app.use(webpackHotMiddleware(compiler));
     //不能惹插拔的往下执行
 
-    require('./server/routes')(app, express);
+    // app.use(express.static(path.join(__dirname, 'public')));
+    // require('./server/routes')(app, express);
 
     // add "reload" to express, see: https://www.npmjs.com/package/reload
     var reload = require('reload');
@@ -90,6 +91,10 @@ if (isDev) {
     server.listen(port, function(){
         console.log('App (dev) is now running on port 13300!');
     });
+
+    //静态目錄設置放在reload後面，避免頁面引入reload.js報錯
+    app.use(express.static(path.join(__dirname, 'public')));
+    require('./server/routes')(app, express);
 } else {
     //线上环境不需要监听，只需开启node服务即可
     // static assets served by express.static() for production
