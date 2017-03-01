@@ -44,7 +44,9 @@ if (isDev) {
         webpackDevMiddleware = require('webpack-dev-middleware'),
         webpackHotMiddleware = require('webpack-hot-middleware'),
         webpackDevConfig = require('./webpack.config.js');
+        webpackDllConfig = require('./webpack.dll.config.js');
 
+    var dll = webpack(webpackDllConfig);
     var compiler = webpack(webpackDevConfig);
 
     app.use(webpackDevMiddleware(compiler, {

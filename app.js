@@ -42,6 +42,8 @@ app.locals.reload = true;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
+    resave:false,//添加这行  
+    saveUninitialized: true,//添加这行
   secret: settings.cookieSecret,
   key: settings.db,//cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 10},//30 days
