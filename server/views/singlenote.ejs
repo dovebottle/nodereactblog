@@ -8,6 +8,7 @@
 	
 	<div class="note_box">
 		<h2 class="note_title"><%= note[0].title %></h2>
+		<div id='note_id' style="display: none;"><%= note[0].urlid %></div>
 		<div class="note_info">
 			<span class="note_author">by: <a href="/authorpage/<%= note[0].author %>"><%= note[0].author %></a></span>
 			<span class="note_read">阅读99</span>

@@ -13,6 +13,14 @@ var add_commen = {
 	pencilX: 0,
 	pencilY: 0,
 	boxID: '',
+	note_info: {
+		time: '',
+		author: '',//
+		note_id: '',//
+		x_pos: '',
+		y_pos: '',
+		comment: ''
+	},
 
 	init: function(add_id, conent_id) {
 		var _this = this;
@@ -29,6 +37,12 @@ var add_commen = {
 			var content = $('.window_content').val();
 			console.log(content);
 			if (content) {
+				//
+				if (_this.note_info.time == _this.addtime) {
+					_this.note_info.comment = content;
+				} else {
+					//TODO some error
+				}
 				// canUseCreateButton = true;
 				var timeflag = _this.addtime;   //作为唯一匹配id	
 				//添加灯泡图标
@@ -69,8 +83,23 @@ var add_commen = {
 					$("canvas[id="+gethoverid+"]").css({"display":"none"});
 				});
 
-				_this.close_and_clean();
+				//一个ajax评论请求
+				$.ajax({
+					url: '/addcomment',
+					type: 'POST',
+					data: _this.note_info,
+					success: function(res) {
+						console.log(res);
+						_this.close_and_clean();
+					},
+					error: function() {
+						alert('ajax error');
+					}
+				});
+
+				
 			} else {
+				//TODO 删除canvas
 				alert('点开我什么都不说就想走？惊了！');
 			}
 
@@ -87,8 +116,15 @@ var add_commen = {
 	},
 
 	addCanvas: function(content_id) {
+		//TODO 所有信息从这里开始
 		var canvasID = new Date().getTime();
 		this.addtime = canvasID;
+		//
+		this.note_info.time = canvasID;
+		this.note_info.x_pos = '';
+		this.note_info.y_pos = '';
+		this.note_info.note_id = $('#note_id').html();
+
 		var _this = this;
 
 		var canvas_box = $("<canvas id='"+canvasID+"' class='canvasSize'></canvas>");
@@ -128,6 +164,9 @@ var add_commen = {
 		event.preventDefault();
 		if (this.flag){
 			var p = this.pos(event);
+			//
+			this.note_info.x_pos += p.x + ',';
+			this.note_info.y_pos += p.y + ',';
 			this.ctx.lineTo(p.x, p.y);
 			this.ctx.lineWidth = 0.5; // 设置线宽
 			// ctx.shadowColor = "#CC0000";
@@ -138,6 +177,8 @@ var add_commen = {
 		
 	},
 	onMouseUp: function(event) {
+		console.log(this.note_info);
+
 		event.preventDefault();
 		this.flag = false;
 		var p = this.pos(event); 
@@ -188,7 +229,9 @@ var add_commen = {
 		});
 	},
 	showhoverdialog: function() {
+		var _this = this;
 		$("div[class=addnewBulb]").hover(function(e){
+		console.log(_this.note_info);
 			var getid = $(this).attr("id");
 			$("div[forid="+getid+"]").removeClass().addClass("postilBarFocus");
 			$("canvas[id="+getid+"]").css({"display":"block"});

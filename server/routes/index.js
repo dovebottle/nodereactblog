@@ -194,6 +194,18 @@ module.exports = function (app, express) {
 		});
 	});
 
+	app.post('/addcomment', checkLogin);
+	app.post('/addcomment', function(req, res) {
+		//TODO 一些请求参数判断过滤
+		var params = req.body;
+		params.author = req.session.user.name;
+		console.log(params);
+		Note.addComment(params, function(err, result) {
+
+			res.send(result);
+		});
+	});
+
 //注册
     app.get('/reg', checkNotLogin);
 	app.get('/reg', function (req, res) {

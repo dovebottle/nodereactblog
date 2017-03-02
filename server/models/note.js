@@ -69,6 +69,33 @@ Note.deletenote = function(objectID, callback) {
 	});
 };
 
+//增加评论
+Note.addComment = function(params, callback) {
+	mongodb.open(function(err, db) {
+		if (err) {
+			return callback(err);
+		}
+		db.collection('comment', function(err, collection) {
+			if (err) {
+				mongodb.close();
+				return callback(err);
+			}
+			//插入评论
+			collection.insert(params, {
+				safe: true
+			}, function(err, result) {
+				//result
+				//{ result: { ok: 1, n: 1 }, ops: 插入的数据 }
+				mongodb.close();
+				if (err) {
+					return callback(err);
+				}
+				callback(null, result);
+			});
+		});
+	});
+};
+
 //根据作者和文章id，返回文章
 Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 
@@ -101,6 +128,7 @@ Note.getNoteByAuthorNoteid = function(author, noteid, callback) {
 					var time = notes[0].time.getFullYear() + "-" + (notes[0].time.getMonth()+1) + "-" + notes[0].time.getDate();
 					notes[0].time = time;
 				}
+				notes[0].urlid = noteid;
 				callback(null, notes);
 			});
 		});
