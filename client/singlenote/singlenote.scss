@@ -9,6 +9,7 @@
 	width: 720px;
 	padding: 10px;
 	margin-top: 10px;
+	margin-left: -260px;
 	display: inline-block;
 	vertical-align: top;
 	box-shadow: 0px 0px 10px #999 inset;
@@ -44,11 +45,30 @@
 		padding: 30px 10px;
 	}
 }
-.note_comment_box {
+.opera_menu {
+	position: fixed;
 	display: inline-block;
-	width:300px;
-	height:500px;
-	border: 1px solid #156;
+	margin-left: 15px;
+	margin-top: 8px;
+}
+.opera_add {
+	width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 28px;
+    background-color: #40ee28;
+    color: #fff;
+    border-radius: 50px;
+    border: 2px solid #cecdcd;
+}
+.note_comment_box {
+	position: fixed;
+	display: inline-block;
+	margin-left: 15px;
+	margin-top: 50px;
+	// width:300px;
+	// height:500px;
+	// border: 1px solid #156;
 }
 .nosureyet {
 	margin: 10px;
@@ -63,6 +83,44 @@
 	background-repeat: no-repeat;
     background-position: center;
 }
+.hoverdialogcss{
+	position: absolute;
+	border: solid 1px #cecdcd;
+	background-color: #5378d9;
+	color: #ffffff;
+	padding:10px; 
+	max-width:200px; 
+	border-radius: 5px; 
+	z-index: 2;
+}
+.list{
+	border: 2px solid #ddd;
+	height: auto;
+	width: 250px;
+	padding: 4px;
+	box-shadow: 4px 4px 2px #CBCACA;
+}
+.list div+div {
+	border: 1px solid #ddd;
+	margin-bottom: 5px;
+	padding: 4px;
+	cursor: pointer;
+}
+.listposition{
+	// position: absolute;
+	// left: 750px;
+	visibility: hidden;
+}
+.listTitle{
+	text-align: center; 
+	padding: 2px;
+	// background-color: #99f09d;
+	font-size: 20px;
+	margin:1px 65px 6px;
+	box-shadow: 0px 0px 12px #CBCACA;
+}
+.postilBarFocus{border:2px solid #ADA4A4;background:#7EB4DE;color:#fff;}
+.postilBar{border-color:#ddd;background:#fff;color:#000;}
 
 .comment_window {
 	position: absolute;
@@ -73,8 +131,11 @@
 	background-color: rgba(0,0,0,0.7);
 	display: none;
 	.comment_container {
+		position: fixed;
 		width: 250px;
-		margin: 50px auto;
+		margin-left: 50%;
+		left: -110px;
+		top: 100px;
 		background-color: #fff;
 		height: 280px;
 		.window_title {
