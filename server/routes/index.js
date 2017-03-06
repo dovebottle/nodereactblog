@@ -69,6 +69,16 @@ module.exports = function (app, express) {
 		});
 	});
 
+//拉取文章评论
+	app.post('/getcomment', function(req, res) {
+		//TODO 一些请求参数判断过滤
+		var params = req.body;
+		console.log(params);
+		Note.getComment(params, function(err, result) {
+			res.send(result);
+		});
+	});
+
 //显示标签
 	app.get('/mytags', checkLogin);
 	app.get('/mytags', function(req, res) {

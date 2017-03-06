@@ -105,6 +105,75 @@ var add_commen = {
 
 		});
 
+		//ajax拉取评论
+		$.ajax({
+			url: '/getcomment',
+			type: 'POST',
+			data: {note_id: $('#note_id').html()},
+			success: function(res) {
+				console.log(res);
+				for (var i = 0; i < res.length; i++) {
+					//添加canvas画板 
+					var canvas_box = $("<canvas id='"+res[i].time+"' class='canvasSize' style='display: none;'></canvas>");
+					$('#' + _this.boxID).append(canvas_box);
+					var content_box = $("#" + _this.boxID)[0];
+
+					canvas_box[0].width = content_box.offsetWidth;
+	    			canvas_box[0].height = content_box.offsetHeight;
+
+	    			var CanvasItem = canvas_box[0].getContext('2d');
+					CanvasItem.lineWidth = 1; // 设置线宽
+					CanvasItem.strokeStyle = "#FC2222"; // 设置线的颜色
+					CanvasItem.beginPath();
+					CanvasItem.shadowBlur = 1;
+
+					var X_point = res[i].x_pos.split(',');
+					var Y_point = res[i].y_pos.split(',');
+					CanvasItem.moveTo(X_point[0], Y_point[0]);//移动绘画点开始于0,0
+					for (var ii = 1; ii < X_point.length - 1; ii++) {
+						CanvasItem.lineTo(X_point[ii], Y_point[ii]);
+						CanvasItem.stroke();
+
+					}
+
+					//添加评论图标
+					//TODO build ??
+					var newbulbDiv = $("<div class='addnewBulb' id='"+res[i].time+"' data-comment='"+res[i].comment+"' data-bulbid='"+res[i].time+"'></div>");
+					$('#content_jq').append(newbulbDiv);
+					newbulbDiv.css({"z-index": 1000, "left" : res[i].x_pos.split(',')[0] + 'px', "top": res[i].y_pos.split(',')[0] + 'px', "click" :_this.showclickdialog() ,"hover": _this.showhoverdialog() });
+
+					//评论列表的插入
+					var $list = $("#listbar");
+					var $postil = $("<div forid='"+res[i].time+"'>"+res[i].comment+"</div>");
+					$list.append($postil);
+					$postil.hover(function(){
+						$(this).removeClass().addClass("postilBarFocus");
+						var gethoverid = $(this).attr("forid");
+						$("canvas[id="+gethoverid+"]").css({"display":"block"});
+					},function(){
+						$(this).removeClass().addClass("postilBar");
+						var gethoverid = $(this).attr("forid");
+						$("canvas[id="+gethoverid+"]").css({"display":"none"});
+					});
+				}
+				
+			},
+			error: function() {
+				console.log('拉取评论出错');
+			}
+		});
+
+		$('.opera_showidea').click(function(e) {
+			var flag = $(e.target).attr('flag');
+			if (flag === 'show') {
+				$("div[class=addnewBulb]").css({"visibility":"hidden"});
+				$(e.target).html('x').attr('flag', 'hide');
+			} else if (flag === 'hide') {
+				$("div[class=addnewBulb]").css({"visibility":"visible"});
+				$(e.target).html('o').attr('flag', 'show');
+			}
+		});
+		
 	},
 
 	listen_creat: function(id, content_id) {
@@ -220,7 +289,6 @@ var add_commen = {
 		$("#comment_window").css({"display" :"none"});
 	},
 	showclickdialog: function() {
-		console.log('asdf');
 		$("div[class=addnewBulb]").click(function(e){
 			// var clickdialogheight = e.clientY + document.documentElement.scrollTop - 60;
 			// console.log(clickdialogheight);
@@ -231,7 +299,6 @@ var add_commen = {
 	showhoverdialog: function() {
 		var _this = this;
 		$("div[class=addnewBulb]").hover(function(e){
-		console.log(_this.note_info);
 			var getid = $(this).attr("id");
 			$("div[forid="+getid+"]").removeClass().addClass("postilBarFocus");
 			$("canvas[id="+getid+"]").css({"display":"block"});
@@ -261,3 +328,4 @@ var add_commen = {
 };
 
 add_commen.init("add_comment", "content_jq");
+
