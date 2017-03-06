@@ -30,10 +30,18 @@ var devConfig = {
             test: /\.(png|jpg)$/,
             //小于8192的用url loader转成base64
             loader: 'url?limit=8192&context=client&name=[path][name].[ext]'
-        }, {
-            test: /\.scss$/,
-            loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
-        }, {
+        },
+        {
+            test: /\.css$/,
+            loader: 'style!css?sourceMap'
+            //注意，loader是从左到右的
+            // loaders: ['style-loader', 'css-loader', 'resolve-url-loader']
+        },
+        // {
+        //     test: /\.scss$/,
+        //     loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
+        // },
+        {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel',

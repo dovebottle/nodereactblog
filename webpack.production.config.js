@@ -27,10 +27,16 @@ var productionConfig = [{
         loaders: [{
             test: /\.(png|jpg)$/,
             loader: 'url?limit=8192&context=client&name=[path][name].[ext]'
-        }, {
-            test: /\.scss$/,
-            loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
-        }, {
+        },
+        {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style', 'css')
+        },
+        // {
+        //     test: /\.scss$/,
+        //     loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
+        // },
+        {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel',

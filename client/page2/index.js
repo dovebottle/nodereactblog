@@ -2,7 +2,7 @@
 // require("../common/common.js");
 
 import { common_fun } from '../common/common.js';
-import styles from './index.scss';//scss导入
+import styles from './index.css';//scss导入
 
 common_fun();
 

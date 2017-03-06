@@ -1,4 +1,4 @@
-import styles from './addnote.scss';//scss导入
+import styles from './addnote.css';//scss导入
 
 let addnote = {
 	init: function() {

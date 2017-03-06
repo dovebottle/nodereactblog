@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Tags_box from './Tags_box.js';
 import Notes_box from './Notes_box.js';
-import styles from './mytags.scss';//scss导入
+import styles from './mytags.css';//scss导入
 
 class Notes extends React.Component {
 	constructor(props) {

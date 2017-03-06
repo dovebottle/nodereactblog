@@ -1,1 +1,1 @@
-import styles from './mynote.scss';//scss导入
+import styles from './mynote.css';//scss导入

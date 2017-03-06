@@ -1,4 +1,4 @@
-@import '../common/common';
+@import '../common/common.css';
 
 .note_page_box {
 	text-align: center;
@@ -13,37 +13,34 @@
 	display: inline-block;
 	vertical-align: top;
 	box-shadow: 0px 0px 10px #999 inset;
-
-	.note_title {
-		text-align: center;
-	}
-	.note_info {
-		text-align: left;
-		color: #B6B4B4;
-		span {
-			margin-left: 5px;
-		}
-		span:nth-child(1) {
-			margin-left: 0;
-		}
-		.note_author {
-			a {
-				text-decoration: none;
-				color: #461FF3;
-			}
-			a:hover {
-				text-decoration: underline;
-			}
-		}
-		.note_time {
-			float: right;
-		}
-	}
-	.content {
-		position: relative;
-		text-align: left;
-		padding: 30px 10px;
-	}
+}
+.note_title {
+	text-align: center;
+}
+.note_info {
+	text-align: left;
+	color: #B6B4B4;
+}
+.note_info span {
+	margin-left: 5px;
+}
+.note_info span:nth-child(1) {
+	margin-left: 0;
+}
+.note_author a {
+	text-decoration: none;
+	color: #461FF3;
+}
+.note_author a:hover {
+	text-decoration: underline;
+}
+.note_time {
+	float: right;
+}
+.content {
+	position: relative;
+	text-align: left;
+	padding: 30px 10px;
 }
 .opera_menu {
 	position: fixed;
@@ -140,55 +137,55 @@
 	z-index: 1000;
 	background-color: rgba(0,0,0,0.7);
 	display: none;
-	.comment_container {
-		position: fixed;
-		width: 250px;
-		margin-left: 50%;
-		left: -110px;
-		top: 100px;
-		background-color: #fff;
-		height: 280px;
-		.window_title {
-			background-color: #1f7fe4;
-			color: #fff;
-			text-align: left;
-			height: 30px;
-			padding: 0px 10px;
-			line-height: 30px;
-			.close {
-				float: right;
-				width: 30px;
-				text-align: center;
-				font-size: 20px;
-			}
-			.close:hover {
-				color: #000;
-				cursor: pointer;
-			}
-		}
-		.window_content {
-			box-sizing: border-box;
-			padding: 5px;
-			width: 100%;
-			font-size: 18px;
-			height: 220px;
-		}
-		.window_footer {
-			background-color: #1f7fe4;
-			color: #fff;
-			height: 30px;
-			line-height: 30px;
-			.window_add {
-				float: right;
-				width: 50px;
-				padding: 0 5px;
-			}
-			.window_add:hover {
-				color: #000;
-				cursor: pointer;
-			}
-		}
-	}
+}
+.comment_container {
+	position: fixed;
+	width: 250px;
+	margin-left: 50%;
+	left: -110px;
+	top: 100px;
+	background-color: #fff;
+	height: 280px;
+}
+.window_title {
+	background-color: #1f7fe4;
+	color: #fff;
+	text-align: left;
+	height: 30px;
+	padding: 0px 10px;
+	line-height: 30px;
+}
+.window_title .close {
+	float: right;
+	width: 30px;
+	text-align: center;
+	font-size: 20px;
+}
+.window_title .close:hover {
+	color: #000;
+	cursor: pointer;
+}
+.window_content {
+	box-sizing: border-box;
+	padding: 5px;
+	width: 100%;
+	font-size: 18px;
+	height: 220px;
+}
+.window_footer {
+	background-color: #1f7fe4;
+	color: #fff;
+	height: 30px;
+	line-height: 30px;
+}
+.window_add {
+	float: right;
+	width: 50px;
+	padding: 0 5px;
+}
+.window_add:hover {
+	color: #000;
+	cursor: pointer;
 }
 .addnewBulb {
 	display: none;

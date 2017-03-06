@@ -5,7 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { common_fun } from '../common/common.js';
 import Greeter from '../common/reactdemo.js';
-import styles from './index.scss';//scss导入
+import styles from './index.css';//scss导入
 
 // import addnote from '../js/addnote.js';
 
